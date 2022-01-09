@@ -27,8 +27,7 @@ public class FamilyTree {
     public void remove(Person person) {
         int i = 0;
         i = person.getLevel();
-        tree[i].remove(person);
-    }
+        tree[i].remove(person); }
 
     public Person getPerson(int level, int num) {
         return tree[level].get(num);
