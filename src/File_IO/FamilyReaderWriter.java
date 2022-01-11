@@ -3,6 +3,7 @@ package File_IO;
 
 import java.io.File;
 import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.util.*;
 import model.*;
@@ -32,6 +33,19 @@ public class FamilyReaderWriter {
 
     public HashMap<String, Coordinates> getCoordinates() {
         return coordinates;
+    }
+
+    public void familyWriter(File file) throws IOException {
+        FileWriter fw = new FileWriter(file);
+        Person p;
+        for (int i = 0; i < 20; i++) {
+            for (int j = 0; j < tree.getLevelSize(i); j++) {
+                p = tree.getPerson(i, j);
+                fw.write(p.savePersonToString() + coordinates.get(p.getName()).toString() + "\r\n");
+                fw.flush();
+            }
+        }
+
     }
 
     public void familyOpen(File file) throws IOException {
