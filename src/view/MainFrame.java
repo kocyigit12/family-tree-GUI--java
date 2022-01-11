@@ -1,10 +1,13 @@
 package view;
 
 
+import File_IO.FamilyReaderWriter;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
-
+import java.io.File;
+import java.io.IOException;
 
 
 public class MainFrame extends JFrame {
@@ -46,10 +49,28 @@ public class MainFrame extends JFrame {
     class ButtonActionListener implements ActionListener {
 
         public void actionPerformed(ActionEvent e) {
+            if (e.getSource().equals(loadButton)) {
+                JFileChooser fc = new JFileChooser();
+                FamilyReaderWriter frw = new FamilyReaderWriter();
+                if (fc.showOpenDialog(null) == JFileChooser.APPROVE_OPTION) {
+                    try {
+                        File file = fc.getSelectedFile();  // select file
+                        frw.familyOpen(file);  // set it to my family tree
+                        setVisible(true);
+                        Container c = MainFrame.this.getContentPane(); // add the info of my file to a container (stacking)
+                        c.remove(1); // remove current tree info
+                        c.add(new FamilyView(frw.getTree(), frw.getCoordinates())); // and add chosen file info into my container
+                         setVisible(true);
+                        repaint();
 
+                    } catch (IOException r) {
+                        System.out.println("IOError");
+                    }
+                }
 
         }
 
     }
 
+}
 }
