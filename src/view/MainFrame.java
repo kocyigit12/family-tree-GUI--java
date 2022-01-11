@@ -84,6 +84,7 @@ public class MainFrame extends JFrame {
                     }
                 }
             }
+            //
             if (e.getSource().equals(helpButton)) {
                 JOptionPane.showMessageDialog(new JFrame(), "Push the right click button and add your first node.\n" +
                         "You can add child, parent or spouse.\n" +
