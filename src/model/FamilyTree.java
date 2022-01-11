@@ -6,7 +6,7 @@ import java.util.*;
 public class FamilyTree {
 
     private LinkedList<Person>[] tree;
-    int maximumLevel;
+    int maximumLevel;  //
 
     public FamilyTree() {
         tree = new LinkedList[20];
