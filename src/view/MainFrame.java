@@ -69,6 +69,21 @@ public class MainFrame extends JFrame {
                 }
 
         }
+            if (e.getSource().equals(saveButton)) {
+                Container c = MainFrame.this.getContentPane();
+                JFileChooser fc = new JFileChooser();
+                if (fc.showSaveDialog(null) == JFileChooser.APPROVE_OPTION) {
+                    try {
+                        File file = fc.getSelectedFile(); // select file
+                        FamilyView fv = (FamilyView) c.getComponent(1); // add recent family to container
+                        FamilyReaderWriter frw = new FamilyReaderWriter(fv.getFamilyViewTree(), fv.getFamilyViewCoordinates()); // push that family to reader and writer
+                                                                                                                                // class with its info and coordinates
+                        frw.familyWriter(file);  // then save that file by using familyWriter function
+                    } catch (IOException r) {
+                        System.out.println("IO error");
+                    }
+                }
+            }
 
     }
 
