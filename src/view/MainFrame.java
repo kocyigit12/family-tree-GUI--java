@@ -84,6 +84,12 @@ public class MainFrame extends JFrame {
                     }
                 }
             }
+            if (e.getSource().equals(helpButton)) {
+                JOptionPane.showMessageDialog(new JFrame(), "Push the right click button and add your first node.\n" +
+                        "You can add child, parent or spouse.\n" +
+                        "If you want to save your tree file click the save button.\n"+
+                        "Click load button if you load existing tree file on your pc.", "Info", JOptionPane.INFORMATION_MESSAGE);
+            }
 
     }
 
