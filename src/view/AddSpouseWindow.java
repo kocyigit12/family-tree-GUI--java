@@ -3,6 +3,8 @@ package view;
 import model.FamilyTree;
 
 import javax.swing.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 public class AddSpouseWindow extends JDialog {
     private JTextField nField;
@@ -47,6 +49,38 @@ public class AddSpouseWindow extends JDialog {
             }
         }
         return numOfError;
+    }
+
+    class AddSpouseWindowListener implements ActionListener {
+
+        public void actionPerformed(ActionEvent e) {
+            if (e.getSource().equals(next)) {
+                if (checkInput() == -1) {
+                    result = true;
+                    AddSpouseWindow.this.setVisible(false);
+                } if (checkInput()==0) {
+                    JFrame frame = new JFrame();
+                    JOptionPane.showMessageDialog(frame, "Enter name!", "Warning!", JOptionPane.WARNING_MESSAGE);
+                    result = false;
+                    AddSpouseWindow.this.setVisible(false);
+                }
+                if (checkInput () == 1)
+                {
+                    JFrame frame = new JFrame();
+                    JOptionPane.showMessageDialog(frame, "this name is already using. add some identifiers, like " + getName() + "2", "Warning!", JOptionPane.WARNING_MESSAGE);
+                    result = false;
+                    AddSpouseWindow.this.setVisible(false);
+
+                }
+
+            }
+            if (e.getSource().equals(cancel)) {
+                AddSpouseWindow.this.setVisible(false);
+                AddSpouseWindow.this.dispose();
+            }
+
+        }
+
     }
 
 }
