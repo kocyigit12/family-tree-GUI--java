@@ -12,6 +12,7 @@ import java.util.Map.Entry;
 import model.*;
 
 
+
 public class FamilyView extends JPanel {
 
     private JPopupMenu menuPopUp1 = new JPopupMenu();
