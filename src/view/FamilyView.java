@@ -125,6 +125,76 @@ public class FamilyView extends JPanel {
         }
 
     }
+    private String isIn(int x, int y) {
+        for (Entry e : coord.entrySet()) {
+            Coordinates c = (Coordinates) e.getValue();
+            if (c.isIn(x, y)) {
+                return (String) e.getKey();
+            }
+        }
+        return null;
+    }
+
+    public void sort(Dimension dim) {
+        for (int i = 0; i < 20; i++) {
+            for (int j = 0; j < tree.getLevelSize(i); j++) {
+                coord.put(tree.getPerson(i, j).getName(), new Coordinates(i, j, dim));
+            }
+        }
+    }
+
+    @Override
+    public void paintComponent(Graphics g) {
+        super.paintComponent(g);
+        g.setColor(Color.black);
+        Dimension dim = getSize();
+        if (needSort) {
+            sort(dim);
+            needSort = false;
+        }
+        for (int i = 0; i < 20; i++) {
+            for (int j = 0; j < tree.getLevelSize(i); j++) {
+                Coordinates personCoords = coord.get(tree.getPerson(i, j).getName());
+                g.setFont(new Font("SERIF", 1, 12));
+                g.setColor(Color.red);
+                g.fillOval(personCoords.x, personCoords.y, personCoords.width, personCoords.height);
+                g.setColor(Color.black);
+                g.drawString(tree.getPerson(i, j).getName(), personCoords.x + 5, personCoords.y + 15);
+                g.setColor(Color.blue);
+                g.drawOval(personCoords.x, personCoords.y, personCoords.width, personCoords.height);
+                g.setColor(Color.black);
+                if (tree.getPerson(i, j).getSpouse() != null) {
+                    for (int l = 0; l < tree.getLevelSize(i); l++) {
+                        if (tree.getPerson(i, j).getSpouse().equals(tree.getPerson(i, l).getName())) {
+                            if (j < l) {
+                                g.drawLine(personCoords.x + personCoords.width, personCoords.y + 10, coord.get(tree.getPerson(i, l).getName()).x, coord.get(tree.getPerson(i, l).getName()).y + 10);
+                            } else {
+
+                            }
+                        }
+
+                    }
+
+                }
+                if (tree.getPerson(i, j).getChildren().size() != 0 && i < 19) {
+                    ListIterator<String> iter = tree.getPerson(i, j).getChildren().listIterator();
+                    while (iter.hasNext()) {
+                        String child = iter.next();
+                        for (int k = 0; k < tree.getLevelSize(i + 1); k++) {
+                            if (child.equals(tree.getPerson(i + 1, k).getName())) {
+
+                                g.drawLine(personCoords.x + personCoords.width / 2, personCoords.y + 20, coord.get(tree.getPerson(i + 1, k).getName()).x + coord.get(tree.getPerson(i + 1, k).getName()).width / 2, coord.get(tree.getPerson(i + 1, k).getName()).y);
+
+                            }
+                        }
+
+                    }
+                }
+            }
+        }
+
+    }
+
     public class Coordinates {
 
         private int x;
