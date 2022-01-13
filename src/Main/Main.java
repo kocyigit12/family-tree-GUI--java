@@ -1,4 +1,4 @@
-package summerlab;
+package Main;
 import view.*;
 
 

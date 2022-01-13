@@ -82,10 +82,31 @@ public class FamilyView extends JPanel {
     public class MyMouseListener implements MouseListener {
 
         public void mouseClicked(MouseEvent e) {
+            if (e.getButton() == 3) {
+                mouseX = e.getX();
+                mouseY = e.getY();
+                String str = isIn(mouseX, mouseY);
+                if (str != null) {
+                    FamilyView.this.menuPopUp1.show(e.getComponent(), e.getX(), e.getY());
+                } else {
+                    FamilyView.this.menuPopUp2.show(e.getComponent(), e.getX(), e.getY());
+                }
+                currentPers = str;
+
+            }
 
         }
 
         public void mouseEntered(MouseEvent e) {
+            if (e.getButton() == 1) {
+                leftMousePressed = true;
+                String str = isIn(e.getX(), e.getY());
+                if (str != null) {
+                    mouseX = e.getX() - coord.get(str).x;
+                    mouseY = e.getY() - coord.get(str).y;
+                }
+                currentPers = str;
+            }
 
         }
 
@@ -107,7 +128,13 @@ public class FamilyView extends JPanel {
 
         @Override
         public void mouseDragged(MouseEvent e) {
-
+            if (leftMousePressed) {
+                if (currentPers != null) {
+                    coord.get(currentPers).setX(e.getX() - mouseX);
+                    coord.get(currentPers).setY(e.getY() - mouseY);
+                }
+                repaint();
+            }
         }
 
         @Override
@@ -206,11 +233,6 @@ public class FamilyView extends JPanel {
                 JOptionPane.showMessageDialog(frame, tree.getPerson(currentPers).toString(), "About", JOptionPane.INFORMATION_MESSAGE);
 
             }
-
-
-
-
-
 
         }
 
