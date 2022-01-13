@@ -3,6 +3,8 @@ package view;
 import model.FamilyTree;
 
 import javax.swing.*;
+import javax.swing.border.EmptyBorder;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -15,6 +17,48 @@ public class AddSpouseWindow extends JDialog {
     private int level;
     private int numOfError;
     FamilyTree tree;
+
+    public AddSpouseWindow(FamilyTree tree, int level) {
+        super();
+        this.tree=tree;
+        this.level = level;
+        numOfError = -1;
+        this.setModalityType(Dialog.ModalityType.APPLICATION_MODAL);
+        result = false;
+        Box nameBox = Box.createHorizontalBox();
+        Box okCancel = Box.createHorizontalBox();
+        Box ageBox = Box.createHorizontalBox();
+        JLabel nLabel = new JLabel("Name:");
+        nField = new JTextField(15);
+        aField = new JTextField(15);
+        next = new JButton("Ok");
+        cancel = new JButton("Cancel");
+        next.addActionListener(new AddSpouseWindowListener());
+        cancel.addActionListener(new AddSpouseWindowListener());
+        JLabel aLabel = new JLabel("Age:");
+        ageBox.add(aLabel);
+        ageBox.add(Box.createHorizontalStrut(6));
+        ageBox.add(aField);
+        nameBox.add(nLabel);
+        nameBox.add(Box.createHorizontalStrut(6));
+        nameBox.add(nField);
+        okCancel.add(Box.createHorizontalGlue());
+        okCancel.add(cancel);
+        okCancel.add(Box.createHorizontalStrut(12));
+        okCancel.add(next);
+        Box mainBox = Box.createVerticalBox();
+        mainBox.setBorder(new EmptyBorder(12, 12, 12, 12));
+        mainBox.add(nameBox);
+        mainBox.add(Box.createVerticalStrut(12));
+        mainBox.add(ageBox);
+        mainBox.add(Box.createVerticalStrut(12));
+        mainBox.add(okCancel);
+        setContentPane(mainBox);
+        pack();
+        setResizable(false);
+        setVisible(true);
+    }
+
 
     public String getName() {
         return nField.getText();

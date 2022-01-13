@@ -145,6 +145,71 @@ public class FamilyView extends JPanel {
                 }
 
             }
+            if (e.getSource().equals(addChild)) {
+                addChildWindow frame = new addChildWindow(FamilyView.this.getFamilyViewTree(), FamilyView.this.tree.getPerson(currentPers).getLevel() + 1);
+                if (frame.isOk()) {
+                    LinkedList<String> list = new LinkedList();
+                    String str = "";
+                    list.add(currentPers);
+                    if (tree.getPerson(currentPers).getSpouse() != null && !"".equals(tree.getPerson(currentPers).getSpouse())) {
+                        ParentsQuestionWindow secondframe = new ParentsQuestionWindow(tree.getPerson(currentPers).getSpouse(), frame.getName());
+                        if (secondframe.getResult() == true) {
+                            list.add(tree.getPerson(currentPers).getSpouse());
+                        }
+
+                    }
+                    Person p = new Person(frame.getName(), frame.getAge(), new LinkedList<String>(), list, str, frame.getLevel());
+                    tree.add(p);
+                    tree.setChildToParents(p);
+                    AffineTransform affinetransform = new AffineTransform();
+                    FontRenderContext frc = new FontRenderContext(affinetransform, false, false);
+                    Font f = new Font("SERIF", 1, 12);
+                    coord.put(p.getName(), new Coordinates(mouseX, mouseY, (int) (f.getStringBounds(p.getName(), frc).getWidth()) + 10, 20));
+                    repaint();
+                }
+            }
+            if (e.getSource().equals(addSpouse)) {
+                AddSpouseWindow frame = new AddSpouseWindow(FamilyView.this.getFamilyViewTree(), FamilyView.this.tree.getPerson(currentPers).getLevel());
+                if (frame.isOk()) {
+                    LinkedList<String> list = new LinkedList();
+                    ListIterator iter = (ListIterator) tree.getPerson(currentPers).getChildren().listIterator();
+                    while (iter.hasNext()) {
+                        String str = (String) iter.next();
+                        ParentsQuestionWindow secondframe = new ParentsQuestionWindow(frame.getName(), str);
+                        if (secondframe.getResult() == true) {
+                            list.add(str);
+                        }
+                    }
+                    Person p = new Person(frame.getName(), frame.getAge(), list, new LinkedList<String>(), currentPers, frame.getLevel());
+                    tree.add(p);
+                    tree.setSpouse(p);
+                    AffineTransform affinetransform = new AffineTransform();
+                    FontRenderContext frc = new FontRenderContext(affinetransform, false, false);
+                    Font f = new Font("SERIF", 1, 12);
+                    coord.put(p.getName(), new Coordinates(mouseX, mouseY, (int) (f.getStringBounds(p.getName(), frc).getWidth()) + 10, 20));
+                    repaint();
+                }
+            }
+            if (e.getSource().equals(remove)) {
+                Person p = tree.getPerson(currentPers);
+                tree.removeParentFromChild(p);
+                tree.removeChildFromParents(p);
+                tree.removeSpouse(p);
+                tree.remove(p);
+
+                coord.remove(currentPers);
+                FamilyView.this.repaint();
+
+            }
+            if (e.getSource().equals(properties)) {
+                JFrame frame = new JFrame();
+                JOptionPane.showMessageDialog(frame, tree.getPerson(currentPers).toString(), "About", JOptionPane.INFORMATION_MESSAGE);
+
+            }
+
+
+
+
 
 
         }
