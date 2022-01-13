@@ -6,9 +6,9 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.*;
-import model.*;
-import view.FamilyView;
-import view.FamilyView.Coordinates;
+import Family.*;
+import Window.FamilyView;
+import Window.FamilyView.Coordinates;
 
 
 public class FamilyReaderWriter {
