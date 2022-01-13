@@ -92,5 +92,42 @@ public class FamilyTree {
 
     }
 
+    public void removeChildFromParents(Person child) {
+        if (child.getLevel() > 0) {
+            for (int i = 0; i < child.getParents().size(); i++) {
+                ListIterator iter = tree[child.getLevel() - 1].listIterator();
+                while (iter.hasNext()) {
+                    Person p = (Person) iter.next();
+                    if (p.getName().equals(child.getParents().get(i))) {
+                        p.removeChild(child.getName());
+                        iter.set(p);
+                        break;
+                    }
+                }
+            }
+        }
+    }
+
+    public void removeParentFromChild(Person parent) {
+        if (parent.getLevel() < 19) {
+            for (int i = 0; i < parent.getChildren().size(); i++) {
+                ListIterator iter = tree[parent.getLevel() + 1].listIterator();
+                while (iter.hasNext()) {
+
+                    Person p = (Person) iter.next();
+                    if (p.getName().equals(parent.getChildren().get(i))) {
+                        p.removeParent(parent.getName());
+                        iter.set(p);
+                        break;
+                    }
+                }
+            }
+        }
+    }
+
+
+
+
+
 
 }
