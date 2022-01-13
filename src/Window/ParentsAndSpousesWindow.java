@@ -11,10 +11,7 @@ import javax.swing.border.EmptyBorder;
 import Family.FamilyTree;
 import Family.Person;
 
-/**
- *
- * @author furae_000
- */
+
 public class ParentsAndSpousesWindow extends JDialog {
 
     private JButton ok;
