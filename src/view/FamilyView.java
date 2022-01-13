@@ -120,6 +120,31 @@ public class FamilyView extends JPanel {
 
         @Override
         public void actionPerformed(ActionEvent e) {
+            if (e.getSource().equals(add)) {
+                if (tree.getLevelSize(0) < 1) {
+                    add.setEnabled(false);
+                }
+                TreeAddWindow frame = new TreeAddWindow();
+                if (frame.isOk()) {
+                    Person p = frame.getPerson();
+                    if (tree.getPerson(p.getName()) == null) {
+                        tree.add(p);
+                        tree.setChildToParents(p);
+                        tree.setSpouse(p);
+                        AffineTransform affinetransform = new AffineTransform();
+                        FontRenderContext frc = new FontRenderContext(affinetransform, false, false);
+                        Font f = new Font("SERIF", 1, 12);
+                        coord.put(p.getName(), new Coordinates(mouseX, mouseY, (int) (f.getStringBounds(p.getName(), frc).getWidth()) + 10, 20));
+                        repaint();
+                    } else {
+                        JOptionPane.showMessageDialog(new JFrame(), "Entered name allready in use. Add details", "Warning", JOptionPane.WARNING_MESSAGE);
+
+                    }
+                } else {
+                    JOptionPane.showMessageDialog(new JFrame(), "Main Parent Allready in tree", "Warning", JOptionPane.WARNING_MESSAGE);
+                }
+
+            }
 
 
         }
@@ -252,4 +277,8 @@ public class FamilyView extends JPanel {
         }
 
     }
+
+
+
+
 }
