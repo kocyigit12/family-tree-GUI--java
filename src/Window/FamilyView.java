@@ -1,4 +1,4 @@
-package Window;
+package view;
 
 import javax.swing.*;
 import java.awt.*;
@@ -9,7 +9,7 @@ import java.awt.font.FontRenderContext;
 import java.awt.geom.AffineTransform;
 import java.util.*;
 import java.util.Map.Entry;
-import Family.*;
+import model.*;
 
 
 
@@ -94,17 +94,10 @@ public class FamilyView extends JPanel {
                 currentPers = str;
 
             }
+
         }
 
         public void mouseEntered(MouseEvent e) {
-
-        }
-
-        public void mouseExited(MouseEvent e) {
-        }
-
-        public void mousePressed(MouseEvent e) {
-
             if (e.getButton() == 1) {
                 leftMousePressed = true;
                 String str = isIn(e.getX(), e.getY());
@@ -114,6 +107,15 @@ public class FamilyView extends JPanel {
                 }
                 currentPers = str;
             }
+
+        }
+
+        public void mouseExited(MouseEvent e) {
+        }
+
+        public void mousePressed(MouseEvent e) {
+
+
 
         }
 
@@ -231,11 +233,6 @@ public class FamilyView extends JPanel {
                 JOptionPane.showMessageDialog(frame, tree.getPerson(currentPers).toString(), "About", JOptionPane.INFORMATION_MESSAGE);
 
             }
-
-
-
-
-
 
         }
 
