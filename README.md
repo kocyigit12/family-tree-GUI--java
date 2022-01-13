@@ -13,3 +13,4 @@ program holds the data entered.
 
 ![ss3](https://user-images.githubusercontent.com/63734506/149387992-7bcb7401-c22b-4552-8e30-84e01b98c1c7.png)
 ![ss4](https://user-images.githubusercontent.com/63734506/149388002-f50b716c-2da3-4f72-b3af-f6bd572f378f.png)
+![ss7](https://user-images.githubusercontent.com/63734506/149420224-f926b2ae-2b31-4c26-8871-f7f2380c1b32.png)
