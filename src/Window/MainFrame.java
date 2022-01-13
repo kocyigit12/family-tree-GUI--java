@@ -16,7 +16,11 @@ public class MainFrame extends JFrame {
     JMenuItem saveButton, loadButton, sortButton, helpButton;
 
     public MainFrame(String title) {
+
+
         super(title);
+        ImageIcon img = new ImageIcon("tree.png");
+        setIconImage(img.getImage());
         menu = new JMenuBar();
         saveButton = new JMenuItem("Save", new ImageIcon("icon_save_16x16.gif"));
         loadButton = new JMenuItem("Open", new ImageIcon("icon_OpenFile.png"));
