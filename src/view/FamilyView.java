@@ -114,9 +114,15 @@ public class FamilyView extends JPanel {
         }
 
         public void mousePressed(MouseEvent e) {
-
-
-
+            if (e.getButton() == 1) {
+                leftMousePressed = true;
+                String str = isIn(e.getX(), e.getY());
+                if (str != null) {
+                    mouseX = e.getX() - coord.get(str).x;
+                    mouseY = e.getY() - coord.get(str).y;
+                }
+                currentPers = str;
+            }
         }
 
         public void mouseReleased(MouseEvent e) {
