@@ -53,5 +53,44 @@ public class FamilyTree {
         }
         return null;
     }
+    public void setChildToParents(Person child) {
+        if (child.getLevel() > 0) {
+            for (int i = 0; i < child.getParents().size(); i++) {
+                ListIterator iter = tree[child.getLevel() - 1].listIterator();
+                while (iter.hasNext()) {
+                    Person p = (Person) iter.next();
+                    if (p.getName().equals(child.getParents().get(i))) {
+                        p.addChild(child.getName());
+                        iter.set(p);
+                        break;
+                    }
+                }
+            }
+        }
+    }
+    public void setSpouse(Person spouse) {
+        ListIterator iter = tree[spouse.getLevel()].listIterator();
+        while (iter.hasNext()) {
+            Person p = (Person) iter.next();
+            if (p.getName().equals(spouse.getSpouse())) {
+                removeSpouse(p);
+                p.setSpouse(spouse.getName());
+                iter.set(p);
+            }
+        }
+
+    }
+    public void removeSpouse(Person spouse) {
+        ListIterator iter = tree[spouse.getLevel()].listIterator();
+        while (iter.hasNext()) {
+            Person p = (Person) iter.next();
+            if (p.getName().equals(spouse.getSpouse())) {
+                p.setSpouse("");
+                iter.set(p);
+            }
+        }
+
+    }
+
 
 }
