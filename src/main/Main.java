@@ -1,11 +1,11 @@
 package main;
-import Window.*;
 
+import Window.MainFrame;
 
-public class Main {
-
+public class Main
+{
     public static void main(String[] args) {
-        MainFrame mf = new MainFrame("Family Tree");
+        MainFrame mf = new MainFrame("Your family tree");
     }
 
 }

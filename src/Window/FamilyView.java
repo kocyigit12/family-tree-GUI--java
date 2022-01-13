@@ -1,4 +1,4 @@
-package view;
+package Window;
 
 import javax.swing.*;
 import java.awt.*;
@@ -9,7 +9,7 @@ import java.awt.font.FontRenderContext;
 import java.awt.geom.AffineTransform;
 import java.util.*;
 import java.util.Map.Entry;
-import model.*;
+import Family.*;
 
 
 
@@ -114,7 +114,15 @@ public class FamilyView extends JPanel {
         }
 
         public void mousePressed(MouseEvent e) {
-
+            if (e.getButton() == 1) {
+                leftMousePressed = true;
+                String str = isIn(e.getX(), e.getY());
+                if (str != null) {
+                    mouseX = e.getX() - coord.get(str).x;
+                    mouseY = e.getY() - coord.get(str).y;
+                }
+                currentPers = str;
+            }
 
 
         }
