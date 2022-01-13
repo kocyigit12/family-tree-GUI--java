@@ -26,7 +26,7 @@ public class MainFrame extends JFrame {
         loadButton = new JMenuItem("Open", new ImageIcon("icon_OpenFile.png"));
         loadButton.addActionListener(new ButtonActionListener());
         saveButton.addActionListener(new ButtonActionListener());
-        sortButton = new JMenuItem("Sort", new ImageIcon("sort-descending-icon.png"));
+        //sortButton = new JMenuItem("Sort", new ImageIcon("sort-descending-icon.png"));
         helpButton = new JMenuItem("Help", new ImageIcon("Help_Circle_Blue.png"));
         helpButton.addActionListener(new ButtonActionListener());
         saveButton.setSize(18, 18);
@@ -35,9 +35,9 @@ public class MainFrame extends JFrame {
         menu.setLayout(menuLayout);
         menu.add(loadButton);
         menu.add(saveButton);
-        menu.add(sortButton);
+        //menu.add(sortButton);
         menu.add(helpButton);
-        sortButton.addActionListener(new ButtonActionListener());
+        //sortButton.addActionListener(new ButtonActionListener());
         setSize(1000, 1000);
         menu.setSize(130, 50);
         menu.setPreferredSize(new Dimension(130, 34));

@@ -255,23 +255,23 @@ public class FamilyView extends JPanel {
         return null;
     }
 
-    public void sort(Dimension dim) {
+ /*   public void sort(Dimension dim) {
         for (int i = 0; i < 20; i++) {
             for (int j = 0; j < tree.getLevelSize(i); j++) {
                 coord.put(tree.getPerson(i, j).getName(), new Coordinates(i, j, dim));
             }
         }
-    }
+    }*/
 
     @Override
     public void paintComponent(Graphics g) {
         super.paintComponent(g);
         g.setColor(Color.black);
         Dimension dim = getSize();
-        if (needSort) {
+       /* if (needSort) {
             sort(dim);
             needSort = false;
-        }
+        }*/
         for (int i = 0; i < 20; i++) {
             for (int j = 0; j < tree.getLevelSize(i); j++) {
                 Coordinates personCoords = coord.get(tree.getPerson(i, j).getName());
